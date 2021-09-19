@@ -1,660 +1,130 @@
-contract Contract {
+/**
+ *Submitted for verification at Etherscan.io on 2021-08-07
+*/
 
-    function main() {
-        memory[0x40:0x60] = 0x80;
-    
-        if (msg.data.length < 0x04) {
-        label_00AF:
-            var var0 = msg.value;
-        
-            if (!var0) { revert(memory[0x00:0x00]); }
-            else { revert(memory[0x00:0x00]); }
-        } else {
-            var0 = msg.data[0x00:0x20] / 0x0100000000000000000000000000000000000000000000000000000000 & 0xffffffff;
-        
+pragma solidity ^0.4.4;
 
-            if (var0 == 0x06fdde03) {
-                // Dispatch table entry for name()
-                var var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x00d6;
-                var var2 = name();
-                var temp0 = memory[0x40:0x60];
-                var var3 = temp0;
-                var var4 = var3;
-                var temp1 = var4 + 0x20;
-                memory[var4:var4 + 0x20] = temp1 - var4;
-                var temp2 = var2;
-                memory[temp1:temp1 + 0x20] = memory[temp2:temp2 + 0x20];
-                var var5 = temp1 + 0x20;
-                var var7 = memory[temp2:temp2 + 0x20];
-                var var6 = temp2 + 0x20;
-                var var8 = var7;
-                var var9 = var5;
-                var var10 = var6;
-                var var11 = 0x00;
-            
-                if (var11 >= var8) {
-                label_0116:
-                    var temp3 = var7;
-                    var5 = temp3 + var5;
-                    var6 = temp3 & 0x1f;
-                
-                    if (!var6) {
-                        var temp4 = memory[0x40:0x60];
-                        return memory[temp4:temp4 + var5 - temp4];
-                    } else {
-                        var temp5 = var6;
-                        var temp6 = var5 - temp5;
-                        memory[temp6:temp6 + 0x20] = ~(0x0100 ** (0x20 - temp5) - 0x01) & memory[temp6:temp6 + 0x20];
-                        var temp7 = memory[0x40:0x60];
-                        return memory[temp7:temp7 + (temp6 + 0x20) - temp7];
-                    }
-                } else {
-                label_0104:
-                    var temp8 = var11;
-                    memory[var9 + temp8:var9 + temp8 + 0x20] = memory[var10 + temp8:var10 + temp8 + 0x20];
-                    var11 = temp8 + 0x20;
-                
-                    if (var11 >= var8) { goto label_0116; }
-                    else { goto label_0104; }
-                }
+contract Token {
+    /// @return total amount of tokens
+    function totalSupply() constant returns (uint256 supply) {}
 
-            } else if (var0 == 0x095ea7b3) {
-                // Dispatch table entry for approve(address,uint256)
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x019c;
-                var2 = msg.data[0x04:0x24] & 0xffffffffffffffffffffffffffffffffffffffff;
-                var3 = msg.data[0x24:0x44];
-                var1 = approve(var2, var3);
-                var temp9 = memory[0x40:0x60];
-                memory[temp9:temp9 + 0x20] = !!var1;
-                var temp10 = memory[0x40:0x60];
-                return memory[temp10:temp10 + (temp9 + 0x20) - temp10];
+    /// @param _owner The address from which the balance will be retrieved
+    /// @return The balance
+    function balanceOf(address _owner) constant returns (uint256 balance) {}
 
-            } else if (var0 == 0x18160ddd) {
-                // Dispatch table entry for totalSupply()
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x01cb;
-                var2 = totalSupply();
-                var temp11 = memory[0x40:0x60];
-                memory[temp11:temp11 + 0x20] = var2;
-                var temp12 = memory[0x40:0x60];
-                return memory[temp12:temp12 + (temp11 + 0x20) - temp12];
+    /// @notice send `_value` token to `_to` from `msg.sender`
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+    function transfer(address _to, uint256 _value) returns (bool success) {}
 
-            } else if (var0 == 0x23b872dd) {
-                // Dispatch table entry for transferFrom(address,address,uint256)
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x024c;
-                var2 = msg.data[0x04:0x24] & 0xffffffffffffffffffffffffffffffffffffffff;
-                var3 = msg.data[0x24:0x44] & 0xffffffffffffffffffffffffffffffffffffffff;
-                var4 = msg.data[0x44:0x64];
-                var1 = transferFrom(var2, var3, var4);
-                var temp13 = memory[0x40:0x60];
-                memory[temp13:temp13 + 0x20] = !!var1;
-                var temp14 = memory[0x40:0x60];
-                return memory[temp14:temp14 + (temp13 + 0x20) - temp14];
+    /// @notice send `_value` token to `_to` from `_from` on the condition it is approved by `_from`
+    /// @param _from The address of the sender
+    /// @param _to The address of the recipient
+    /// @param _value The amount of token to be transferred
+    /// @return Whether the transfer was successful or not
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {}
 
-            } else if (var0 == 0x313ce567) {
-                // Dispatch table entry for decimals()
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x027b;
-                var2 = decimals();
-                var temp15 = memory[0x40:0x60];
-                memory[temp15:temp15 + 0x20] = var2 & 0xff;
-                var temp16 = memory[0x40:0x60];
-                return memory[temp16:temp16 + (temp15 + 0x20) - temp16];
+    /// @notice `msg.sender` approves `_addr` to spend `_value` tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @param _value The amount of wei to be approved for transfer
+    /// @return Whether the approval was successful or not
+    function approve(address _spender, uint256 _value) returns (bool success) {}
 
-            } else if (var0 == 0x54fd4d50) {
-                // Dispatch table entry for version()
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x02ac;
-                var2 = version();
-                var temp17 = memory[0x40:0x60];
-                var3 = temp17;
-                var4 = var3;
-                var temp18 = var4 + 0x20;
-                memory[var4:var4 + 0x20] = temp18 - var4;
-                var temp19 = var2;
-                memory[temp18:temp18 + 0x20] = memory[temp19:temp19 + 0x20];
-                var5 = temp18 + 0x20;
-                var6 = temp19 + 0x20;
-                var7 = memory[temp19:temp19 + 0x20];
-                var8 = var7;
-                var9 = var5;
-                var10 = var6;
-                var11 = 0x00;
-            
-                if (var11 >= var8) {
-                label_02EC:
-                    var temp20 = var7;
-                    var5 = temp20 + var5;
-                    var6 = temp20 & 0x1f;
-                
-                    if (!var6) {
-                        var temp21 = memory[0x40:0x60];
-                        return memory[temp21:temp21 + var5 - temp21];
-                    } else {
-                        var temp22 = var6;
-                        var temp23 = var5 - temp22;
-                        memory[temp23:temp23 + 0x20] = ~(0x0100 ** (0x20 - temp22) - 0x01) & memory[temp23:temp23 + 0x20];
-                        var temp24 = memory[0x40:0x60];
-                        return memory[temp24:temp24 + (temp23 + 0x20) - temp24];
-                    }
-                } else {
-                label_02DA:
-                    var temp25 = var11;
-                    memory[var9 + temp25:var9 + temp25 + 0x20] = memory[var10 + temp25:var10 + temp25 + 0x20];
-                    var11 = temp25 + 0x20;
-                
-                    if (var11 >= var8) { goto label_02EC; }
-                    else { goto label_02DA; }
-                }
+    /// @param _owner The address of the account owning tokens
+    /// @param _spender The address of the account able to transfer the tokens
+    /// @return Amount of remaining tokens allowed to spent
+    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {}
 
-            } else if (var0 == 0x70a08231) {
-                // Dispatch table entry for balanceOf(address)
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x0368;
-                var2 = msg.data[0x04:0x24] & 0xffffffffffffffffffffffffffffffffffffffff;
-                var1 = balanceOf(var2);
-                var temp26 = memory[0x40:0x60];
-                memory[temp26:temp26 + 0x20] = var1;
-                var temp27 = memory[0x40:0x60];
-                return memory[temp27:temp27 + (temp26 + 0x20) - temp27];
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+}
 
-            } else if (var0 == 0x95d89b41) {
-                // Dispatch table entry for symbol()
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x0393;
-                var2 = symbol();
-                var temp28 = memory[0x40:0x60];
-                var3 = temp28;
-                var4 = var3;
-                var temp29 = var4 + 0x20;
-                memory[var4:var4 + 0x20] = temp29 - var4;
-                var temp30 = var2;
-                memory[temp29:temp29 + 0x20] = memory[temp30:temp30 + 0x20];
-                var5 = temp29 + 0x20;
-                var7 = memory[temp30:temp30 + 0x20];
-                var6 = temp30 + 0x20;
-                var8 = var7;
-                var9 = var5;
-                var10 = var6;
-                var11 = 0x00;
-            
-                if (var11 >= var8) {
-                label_03D3:
-                    var temp31 = var7;
-                    var5 = temp31 + var5;
-                    var6 = temp31 & 0x1f;
-                
-                    if (!var6) {
-                        var temp32 = memory[0x40:0x60];
-                        return memory[temp32:temp32 + var5 - temp32];
-                    } else {
-                        var temp33 = var6;
-                        var temp34 = var5 - temp33;
-                        memory[temp34:temp34 + 0x20] = ~(0x0100 ** (0x20 - temp33) - 0x01) & memory[temp34:temp34 + 0x20];
-                        var temp35 = memory[0x40:0x60];
-                        return memory[temp35:temp35 + (temp34 + 0x20) - temp35];
-                    }
-                } else {
-                label_03C1:
-                    var temp36 = var11;
-                    memory[var9 + temp36:var9 + temp36 + 0x20] = memory[var10 + temp36:var10 + temp36 + 0x20];
-                    var11 = temp36 + 0x20;
-                
-                    if (var11 >= var8) { goto label_03D3; }
-                    else { goto label_03C1; }
-                }
 
-            } else if (var0 == 0xa9059cbb) {
-                // Dispatch table entry for transfer(address,uint256)
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x0459;
-                var2 = msg.data[0x04:0x24] & 0xffffffffffffffffffffffffffffffffffffffff;
-                var3 = msg.data[0x24:0x44];
-                var1 = transfer(var2, var3);
-                var temp37 = memory[0x40:0x60];
-                memory[temp37:temp37 + 0x20] = !!var1;
-                var temp38 = memory[0x40:0x60];
-                return memory[temp38:temp38 + (temp37 + 0x20) - temp38];
 
-            } else if (var0 == 0xcae9ca51) {
-                // Dispatch table entry for approveAndCall(address,uint256,bytes)
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x0504;
-                var2 = msg.data[0x04:0x24] & 0xffffffffffffffffffffffffffffffffffffffff;
-                var3 = msg.data[0x24:0x44];
-                var temp39 = msg.data[0x44:0x64] + 0x04;
-                var temp40 = msg.data[temp39:temp39 + 0x20];
-                var temp41 = memory[0x40:0x60];
-                memory[0x40:0x60] = temp41 + (temp40 + 0x1f) / 0x20 * 0x20 + 0x20;
-                memory[temp41:temp41 + 0x20] = temp40;
-                memory[temp41 + 0x20:temp41 + 0x20 + temp40] = msg.data[temp39 + 0x20:temp39 + 0x20 + temp40];
-                var4 = temp41;
-                var1 = approveAndCall(var2, var3, var4);
-                var temp42 = memory[0x40:0x60];
-                memory[temp42:temp42 + 0x20] = !!var1;
-                var temp43 = memory[0x40:0x60];
-                return memory[temp43:temp43 + (temp42 + 0x20) - temp43];
+contract StandardToken is Token {
 
-            } else if (var0 == 0xdd62ed3e) {
-                // Dispatch table entry for allowance(address,address)
-                var1 = msg.value;
-            
-                if (var1) { revert(memory[0x00:0x00]); }
-            
-                var1 = 0x057f;
-                var2 = msg.data[0x04:0x24] & 0xffffffffffffffffffffffffffffffffffffffff;
-                var3 = msg.data[0x24:0x44] & 0xffffffffffffffffffffffffffffffffffffffff;
-                var1 = allowance(var2, var3);
-                var temp44 = memory[0x40:0x60];
-                memory[temp44:temp44 + 0x20] = var1;
-                var temp45 = memory[0x40:0x60];
-                return memory[temp45:temp45 + (temp44 + 0x20) - temp45];
-            } else { goto label_00AF; }
-        }
+    function transfer(address _to, uint256 _value) returns (bool success) {
+        //Default assumes totalSupply can't be over max (2^256 - 1).
+        //If your token leaves out totalSupply and can issue more tokens as time goes on, you need to check if it doesn't wrap.
+        //Replace the if with this one instead.
+        //if (balances[msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[msg.sender] >= _value && _value > 0) {
+            balances[msg.sender] -= _value;
+            balances[_to] += _value;
+            Transfer(msg.sender, _to, _value);
+            return true;
+        } else { return false; }
     }
-    
 
-    function name() returns (var r0) {
-        var temp0 = storage[0x03];
-        var temp1 = (!(temp0 & 0x01) * 0x0100 - 0x01 & temp0) / 0x02;
-        var temp2 = memory[0x40:0x60];
-        memory[0x40:0x60] = temp2 + (temp1 + 0x1f) / 0x20 * 0x20 + 0x20;
-        r0 = temp2;
-        var var1 = 0x03;
-        var var2 = temp1;
-        memory[r0:r0 + 0x20] = var2;
-        var var3 = r0 + 0x20;
-        var var4 = var1;
-        var temp3 = storage[var4];
-        var var5 = (!(temp3 & 0x01) * 0x0100 - 0x01 & temp3) / 0x02;
-    
-        if (!var5) {
-        label_062B:
-            return r0;
-        } else if (0x1f < var5) {
-            var temp4 = var3;
-            var temp5 = temp4 + var5;
-            var3 = temp5;
-            memory[0x00:0x20] = var4;
-            var temp6 = keccak256(memory[0x00:0x20]);
-            memory[temp4:temp4 + 0x20] = storage[temp6];
-            var4 = temp6 + 0x01;
-            var5 = temp4 + 0x20;
-        
-            if (var3 <= var5) { goto label_0622; }
-        
-        label_060E:
-            var temp7 = var4;
-            var temp8 = var5;
-            memory[temp8:temp8 + 0x20] = storage[temp7];
-            var4 = temp7 + 0x01;
-            var5 = temp8 + 0x20;
-        
-            if (var3 > var5) { goto label_060E; }
-        
-        label_0622:
-            var temp9 = var3;
-            var temp10 = temp9 + (var5 - temp9 & 0x1f);
-            var5 = temp9;
-            var3 = temp10;
-            goto label_062B;
-        } else {
-            var temp11 = var3;
-            memory[temp11:temp11 + 0x20] = storage[var4] / 0x0100 * 0x0100;
-            var3 = temp11 + 0x20;
-            var5 = var5;
-            goto label_062B;
-        }
+    function transferFrom(address _from, address _to, uint256 _value) returns (bool success) {
+        //same as above. Replace this line with the following if you want to protect against wrapping uints.
+        //if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && balances[_to] + _value > balances[_to]) {
+        if (balances[_from] >= _value && allowed[_from][msg.sender] >= _value && _value > 0) {
+            balances[_to] += _value;
+            balances[_from] -= _value;
+            allowed[_from][msg.sender] -= _value;
+            Transfer(_from, _to, _value);
+            return true;
+        } else { return false; }
     }
-    
 
-    function approve(var arg0, var arg1) returns (var r0) {
-        var temp0 = arg1;
-        memory[0x00:0x20] = msg.sender;
-        memory[0x20:0x40] = 0x01;
-        var temp1 = keccak256(memory[0x00:0x40]);
-        var temp2 = arg0;
-        memory[0x00:0x20] = temp2 & 0xffffffffffffffffffffffffffffffffffffffff;
-        memory[0x20:0x40] = temp1;
-        storage[keccak256(memory[0x00:0x40])] = temp0;
-        var temp3 = memory[0x40:0x60];
-        memory[temp3:temp3 + 0x20] = temp0;
-        var temp4 = memory[0x40:0x60];
-        log(memory[temp4:temp4 + (temp3 + 0x20) - temp4], [0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925, msg.sender, stack[-2] & 0xffffffffffffffffffffffffffffffffffffffff]);
-        return 0x01;
+    function balanceOf(address _owner) constant returns (uint256 balance) {
+        return balances[_owner];
     }
-    
 
-    function totalSupply() returns (var r0) { return storage[0x02]; }
-    
-
-    function transferFrom(var arg0, var arg1, var arg2) returns (var r0) {
-        var var0 = 0x00;
-        memory[0x00:0x20] = arg0 & 0xffffffffffffffffffffffffffffffffffffffff;
-        memory[0x20:0x40] = 0x00;
-        var var1 = storage[keccak256(memory[0x00:0x40])] >= arg2;
-    
-        if (var1) {
-            memory[0x00:0x20] = arg0 & 0xffffffffffffffffffffffffffffffffffffffff;
-            memory[0x20:0x40] = 0x01;
-            var temp9 = keccak256(memory[0x00:0x40]);
-            memory[0x00:0x20] = msg.sender;
-            memory[0x20:0x40] = temp9;
-            var1 = storage[keccak256(memory[0x00:0x40])] >= arg2;
-        
-            if (!var1) { goto label_0803; }
-            else { goto label_07FE; }
-        } else if (!var1) {
-        label_0803:
-        
-            if (!var1) {
-            label_0998:
-                return 0x00;
-            } else {
-            label_0809:
-                var temp0 = arg2;
-                var temp1 = arg1;
-                memory[0x00:0x20] = temp1 & 0xffffffffffffffffffffffffffffffffffffffff;
-                memory[0x20:0x40] = 0x00;
-                var temp2 = keccak256(memory[0x00:0x40]);
-                storage[temp2] = storage[temp2] + temp0;
-                var temp3 = arg0;
-                memory[0x00:0x20] = temp3 & 0xffffffffffffffffffffffffffffffffffffffff;
-                memory[0x20:0x40] = 0x00;
-                var temp4 = keccak256(memory[0x00:0x40]);
-                storage[temp4] = storage[temp4] - temp0;
-                memory[0x00:0x20] = temp3 & 0xffffffffffffffffffffffffffffffffffffffff;
-                memory[0x20:0x40] = 0x01;
-                var temp5 = keccak256(memory[0x00:0x40]);
-                memory[0x00:0x20] = msg.sender;
-                memory[0x20:0x40] = temp5;
-                var temp6 = keccak256(memory[0x00:0x40]);
-                storage[temp6] = storage[temp6] - temp0;
-                var temp7 = memory[0x40:0x60];
-                memory[temp7:temp7 + 0x20] = temp0;
-                var temp8 = memory[0x40:0x60];
-                log(memory[temp8:temp8 + (temp7 + 0x20) - temp8], [0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef, stack[-4] & 0xffffffffffffffffffffffffffffffffffffffff, stack[-3] & 0xffffffffffffffffffffffffffffffffffffffff]);
-                return 0x01;
-            }
-        } else {
-        label_07FE:
-        
-            if (arg2 <= 0x00) { goto label_0998; }
-            else { goto label_0809; }
-        }
+    function approve(address _spender, uint256 _value) returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
+        return true;
     }
-    
 
-    function decimals() returns (var r0) { return storage[0x04] & 0xff; }
-    
-
-    function version() returns (var r0) {
-        var temp0 = storage[0x06];
-        var temp1 = (!(temp0 & 0x01) * 0x0100 - 0x01 & temp0) / 0x02;
-        var temp2 = memory[0x40:0x60];
-        memory[0x40:0x60] = temp2 + (temp1 + 0x1f) / 0x20 * 0x20 + 0x20;
-        r0 = temp2;
-        var var1 = 0x06;
-        var var2 = temp1;
-        memory[r0:r0 + 0x20] = var2;
-        var var3 = r0 + 0x20;
-        var var4 = var1;
-        var temp3 = storage[var4];
-        var var5 = (!(temp3 & 0x01) * 0x0100 - 0x01 & temp3) / 0x02;
-    
-        if (!var5) {
-        label_0A4D:
-            return r0;
-        } else if (0x1f < var5) {
-            var temp4 = var3;
-            var temp5 = temp4 + var5;
-            var3 = temp5;
-            memory[0x00:0x20] = var4;
-            var temp6 = keccak256(memory[0x00:0x20]);
-            memory[temp4:temp4 + 0x20] = storage[temp6];
-            var4 = temp6 + 0x01;
-            var5 = temp4 + 0x20;
-        
-            if (var3 <= var5) { goto label_0A44; }
-        
-        label_0A30:
-            var temp7 = var4;
-            var temp8 = var5;
-            memory[temp8:temp8 + 0x20] = storage[temp7];
-            var4 = temp7 + 0x01;
-            var5 = temp8 + 0x20;
-        
-            if (var3 > var5) { goto label_0A30; }
-        
-        label_0A44:
-            var temp9 = var3;
-            var temp10 = temp9 + (var5 - temp9 & 0x1f);
-            var5 = temp9;
-            var3 = temp10;
-            goto label_0A4D;
-        } else {
-            var temp11 = var3;
-            memory[temp11:temp11 + 0x20] = storage[var4] / 0x0100 * 0x0100;
-            var5 = var5;
-            var3 = temp11 + 0x20;
-            goto label_0A4D;
-        }
+    function allowance(address _owner, address _spender) constant returns (uint256 remaining) {
+        return allowed[_owner][_spender];
     }
-    
 
-    function balanceOf(var arg0) returns (var r0) {
-        memory[0x00:0x20] = arg0 & 0xffffffffffffffffffffffffffffffffffffffff;
-        memory[0x20:0x40] = 0x00;
-        return storage[keccak256(memory[0x00:0x40])];
+    mapping (address => uint256) balances;
+    mapping (address => mapping (address => uint256)) allowed;
+    uint256 public totalSupply;
+}
+
+contract ERC20Token is StandardToken {
+
+    function () {
+        //if ether is sent to this address, send it back.
+        throw;
     }
-    
 
-    function symbol() returns (var r0) {
-        var temp0 = storage[0x05];
-        var temp1 = (!(temp0 & 0x01) * 0x0100 - 0x01 & temp0) / 0x02;
-        var temp2 = memory[0x40:0x60];
-        memory[0x40:0x60] = temp2 + (temp1 + 0x1f) / 0x20 * 0x20 + 0x20;
-        r0 = temp2;
-        var var1 = 0x05;
-        var var2 = temp1;
-        memory[r0:r0 + 0x20] = var2;
-        var var3 = r0 + 0x20;
-        var var4 = var1;
-        var temp3 = storage[var4];
-        var var5 = (!(temp3 & 0x01) * 0x0100 - 0x01 & temp3) / 0x02;
-    
-        if (!var5) {
-        label_0B33:
-            return r0;
-        } else if (0x1f < var5) {
-            var temp4 = var3;
-            var temp5 = temp4 + var5;
-            var3 = temp5;
-            memory[0x00:0x20] = var4;
-            var temp6 = keccak256(memory[0x00:0x20]);
-            memory[temp4:temp4 + 0x20] = storage[temp6];
-            var4 = temp6 + 0x01;
-            var5 = temp4 + 0x20;
-        
-            if (var3 <= var5) { goto label_0B2A; }
-        
-        label_0B16:
-            var temp7 = var4;
-            var temp8 = var5;
-            memory[temp8:temp8 + 0x20] = storage[temp7];
-            var4 = temp7 + 0x01;
-            var5 = temp8 + 0x20;
-        
-            if (var3 > var5) { goto label_0B16; }
-        
-        label_0B2A:
-            var temp9 = var3;
-            var temp10 = temp9 + (var5 - temp9 & 0x1f);
-            var5 = temp9;
-            var3 = temp10;
-            goto label_0B33;
-        } else {
-            var temp11 = var3;
-            memory[temp11:temp11 + 0x20] = storage[var4] / 0x0100 * 0x0100;
-            var3 = temp11 + 0x20;
-            var5 = var5;
-            goto label_0B33;
-        }
+    /* Public variables of the token */
+    string public name;                   //Name of the token
+    uint8 public decimals;                //How many decimals to show. ie. There could 1000 base units with 3 decimals
+    string public symbol;                 //An identifier: eg AXM
+    string public version = 'H1.0';       //human 0.1 standard. Just an arbitrary versioning scheme.
+
+//
+// CHANGE THE FOLLOWING VALUES FOR YOUR TOKEN!
+//
+
+//make sure this function name matches the contract name above. So if you're token is called TutorialToken, make sure the //contract name above is also TutorialToken instead of ERC20Token
+
+    function ERC20Token(
+        ) {
+        balances[msg.sender] = 1000000000000000000000000000000000;               // Give the creator all initial tokens (100000 for example)
+        totalSupply = 1000000000000000000000000000000000;                        // Update total supply (100000 for example)
+        name = "DOG COLLAR";                                   // Set the name for display purposes
+        decimals = 18;                            // Amount of decimals
+        symbol = "COLLAR";                               // Set the symbol for display purposes
     }
-    
 
-    function transfer(var arg0, var arg1) returns (var r0) {
-        var var0 = 0x00;
-        memory[0x00:0x20] = msg.sender;
-        memory[0x20:0x40] = 0x00;
-        var var1 = storage[keccak256(memory[0x00:0x40])] >= arg1;
-    
-        if (!var1) {
-            if (!var1) {
-            label_0C96:
-                return 0x00;
-            } else {
-            label_0B91:
-                var temp0 = arg1;
-                memory[0x00:0x20] = msg.sender;
-                memory[0x20:0x40] = 0x00;
-                var temp1 = keccak256(memory[0x00:0x40]);
-                storage[temp1] = storage[temp1] - temp0;
-                var temp2 = arg0;
-                memory[0x00:0x20] = temp2 & 0xffffffffffffffffffffffffffffffffffffffff;
-                memory[0x20:0x40] = 0x00;
-                var temp3 = keccak256(memory[0x00:0x40]);
-                storage[temp3] = storage[temp3] + temp0;
-                var temp4 = memory[0x40:0x60];
-                memory[temp4:temp4 + 0x20] = temp0;
-                var temp5 = memory[0x40:0x60];
-                log(memory[temp5:temp5 + (temp4 + 0x20) - temp5], [0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef, msg.sender, stack[-3] & 0xffffffffffffffffffffffffffffffffffffffff]);
-                return 0x01;
-            }
-        } else if (arg1 <= 0x00) { goto label_0C96; }
-        else { goto label_0B91; }
-    }
-    
+    /* Approves and then calls the receiving contract */
+    function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns (bool success) {
+        allowed[msg.sender][_spender] = _value;
+        Approval(msg.sender, _spender, _value);
 
-    function approveAndCall(var arg0, var arg1, var arg2) returns (var r0) {
-        var var0 = 0x00;
-        var temp0 = arg1;
-        memory[0x00:0x20] = msg.sender;
-        memory[0x20:0x40] = 0x01;
-        var temp1 = keccak256(memory[0x00:0x40]);
-        var temp2 = arg0;
-        memory[0x00:0x20] = temp2 & 0xffffffffffffffffffffffffffffffffffffffff;
-        memory[0x20:0x40] = temp1;
-        storage[keccak256(memory[0x00:0x40])] = temp0;
-        var temp3 = memory[0x40:0x60];
-        memory[temp3:temp3 + 0x20] = temp0;
-        var temp4 = memory[0x40:0x60];
-        log(memory[temp4:temp4 + (temp3 + 0x20) - temp4], [0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925, msg.sender, stack[-3] & 0xffffffffffffffffffffffffffffffffffffffff]);
-        var var1 = temp2 & 0xffffffffffffffffffffffffffffffffffffffff;
-        var temp5 = memory[0x40:0x60];
-        memory[temp5:temp5 + 0x20] = 0x72656365697665417070726f76616c28616464726573732c75696e743235362c;
-        memory[temp5 + 0x20:temp5 + 0x20 + 0x20] = 0x616464726573732c627974657329000000000000000000000000000000000000;
-        var temp6 = memory[0x40:0x60];
-        var var2 = keccak256(memory[temp6:temp6 + (temp5 + 0x2e) - temp6]) / 0x0100000000000000000000000000000000000000000000000000000000;
-        var var3 = msg.sender;
-        var var4 = temp0;
-        var var5 = address(this);
-        var temp7 = arg2;
-        var var6 = temp7;
-        var temp8 = memory[0x40:0x60];
-        memory[temp8:temp8 + 0x20] = (var2 & 0xffffffff) * 0x0100000000000000000000000000000000000000000000000000000000;
-        var temp9 = temp8 + 0x04;
-        var var7 = temp9;
-        memory[var7:var7 + 0x20] = var3 & 0xffffffffffffffffffffffffffffffffffffffff;
-        var temp10 = var7 + 0x20;
-        memory[temp10:temp10 + 0x20] = var4;
-        var temp11 = temp10 + 0x20;
-        memory[temp11:temp11 + 0x20] = var5 & 0xffffffffffffffffffffffffffffffffffffffff;
-        var var8 = temp11 + 0x20;
-        var var9 = var6 + 0x20;
-        var var10 = memory[var6:var6 + 0x20];
-        var var11 = var10;
-        var var12 = var8;
-        var var13 = var9;
-        var var14 = 0x00;
-    
-        if (var14 >= var11) {
-        label_0EE2:
-            var temp12 = var10;
-            var8 = temp12 + var8;
-            var9 = temp12 & 0x1f;
-        
-            if (!var9) {
-                var temp13 = memory[0x40:0x60];
-                var temp14;
-                temp14, memory[temp13:temp13 + 0x00] = address(var1).call.gas(msg.gas)(memory[temp13:temp13 + var8 - temp13]);
-            
-                if (!temp14) { revert(memory[0x00:0x00]); }
-            
-            label_0F33:
-                return 0x01;
-            } else {
-                var temp15 = var9;
-                var temp16 = var8 - temp15;
-                memory[temp16:temp16 + 0x20] = ~(0x0100 ** (0x20 - temp15) - 0x01) & memory[temp16:temp16 + 0x20];
-                var temp17 = memory[0x40:0x60];
-                var temp18;
-                temp18, memory[temp17:temp17 + 0x00] = address(var1).call.gas(msg.gas)(memory[temp17:temp17 + (temp16 + 0x20) - temp17]);
-            
-                if (temp18) { goto label_0F33; }
-                else { revert(memory[0x00:0x00]); }
-            }
-        } else {
-        label_0ED0:
-            var temp19 = var14;
-            memory[var12 + temp19:var12 + temp19 + 0x20] = memory[var13 + temp19:var13 + temp19 + 0x20];
-            var14 = temp19 + 0x20;
-        
-            if (var14 >= var11) { goto label_0EE2; }
-            else { goto label_0ED0; }
-        }
-    }
-    
-
-    function allowance(var arg0, var arg1) returns (var r0) {
-        memory[0x00:0x20] = arg0 & 0xffffffffffffffffffffffffffffffffffffffff;
-        memory[0x20:0x40] = 0x01;
-        var temp0 = keccak256(memory[0x00:0x40]);
-        memory[0x00:0x20] = arg1 & 0xffffffffffffffffffffffffffffffffffffffff;
-        memory[0x20:0x40] = temp0;
-        return storage[keccak256(memory[0x00:0x40])];
+        //call the receiveApproval function on the contract you want to be notified. This crafts the function signature manually so one doesn't have to include a contract in here just for this.
+        //receiveApproval(address _from, uint256 _value, address _tokenContract, bytes _extraData)
+        //it is assumed that when does this that the call *should* succeed, otherwise one would use vanilla approve instead.
+        if(!_spender.call(bytes4(bytes32(sha3("receiveApproval(address,uint256,address,bytes)"))), msg.sender, _value, this, _extraData)) { throw; }
+        return true;
     }
 }
